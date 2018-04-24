@@ -1,1 +1,9 @@
 language: java
+addons:
+  sonarcloud:
+    organization: "mistahmilla-github" # the key of the org you chose at step #3
+    token:
+      secure: 7fb0053dd109b960ceb40a1ef4346b1eaf89beed # encrypted value of your token
+script:
+  # other script steps might be done before running the actual analysis
+  mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar

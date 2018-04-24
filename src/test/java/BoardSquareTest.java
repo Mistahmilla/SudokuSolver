@@ -1,5 +1,5 @@
 import org.junit.*;
-import org.mistahmilla.sudoku.*;
+import org.mistahmilla.sudoku.org.mistahmilla.sudoku.board.BoardSquare;
 
 import static org.junit.Assert.*;
 

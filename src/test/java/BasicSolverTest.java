@@ -1,6 +1,6 @@
 import org.junit.*;
+import org.mistahmilla.sudoku.org.mistahmilla.sudoku.board.Board;
 import org.mistahmilla.sudoku.solvers.UniqueCandidateSolver;
-import org.mistahmilla.sudoku.*;
 
 import static org.junit.Assert.*;
 

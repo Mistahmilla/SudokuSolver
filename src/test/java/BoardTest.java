@@ -1,7 +1,8 @@
 import org.junit.*;
 
 import static org.junit.Assert.*;
-import org.mistahmilla.sudoku.*;
+
+import org.mistahmilla.sudoku.org.mistahmilla.sudoku.board.Board;
 
 public class BoardTest {
 

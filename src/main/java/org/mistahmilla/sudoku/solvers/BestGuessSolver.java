@@ -1,5 +1,6 @@
 package org.mistahmilla.sudoku.solvers;
 import org.mistahmilla.sudoku.*;
+import org.mistahmilla.sudoku.org.mistahmilla.sudoku.board.Board;
 
 public class BestGuessSolver implements Solver {
 

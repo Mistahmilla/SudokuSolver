@@ -1,5 +1,6 @@
 package org.mistahmilla.sudoku;
 
+import org.mistahmilla.sudoku.org.mistahmilla.sudoku.board.Board;
 import org.mistahmilla.sudoku.solvers.*;
 
 public class Game {

@@ -27,7 +27,11 @@ public class Game {
 
             post = board.missingCount();
         }while(post<pre);
+
+        board.generatePossibleValues();
+
         bgs.Solve();
+
     }
 
     public Board getBoard(){

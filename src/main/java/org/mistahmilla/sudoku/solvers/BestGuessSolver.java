@@ -11,12 +11,13 @@ public class BestGuessSolver implements Solver {
     }
 
     public void Solve(){
-        generatePossibleValues();
         int bestX;
         int bestY;
         int fewest;
         boolean done;
         Game g;
+
+        board.generatePossibleValues();
 
         done = false;
         bestX = 0;
@@ -37,6 +38,8 @@ public class BestGuessSolver implements Solver {
         for (int i = 0; i < board.getSquare(bestX, bestY).getPossibleValues().size() && !done; i++){
             g = new Game(board.toCSV());
             g.getBoard().setValue(bestX, bestY, Integer.parseInt(board.getSquare(bestX, bestY).getPossibleValues().get(i).toString()));
+            g.getBoard().generatePossibleValues();
+
             g.run();
 
             if(g.getBoard().missingCount() ==0){
@@ -53,18 +56,4 @@ public class BestGuessSolver implements Solver {
         }
     }
 
-    void generatePossibleValues(){
-        for (int x= 0; x<9; x++){
-            for (int y = 0; y<9; y++){
-                if(!board.hasValue(x, y)){
-                    for(int i = 1; i<=9; i++) {
-                        if(board.validValue(x, y, i)){
-                            board.getSquare(x, y).addPossibleValue(i);
-                        }
-                    }
-                }
-            }
-        }
-
-    }
 }

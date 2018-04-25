@@ -35,4 +35,5 @@ public class BoardTest {
         b.setValue(1,1,1);
         assertEquals(80,b.missingCount());
     }
+
 }

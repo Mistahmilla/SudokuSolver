@@ -29,6 +29,10 @@ public class BoardSquare {
         }
     }
 
+    public void removeAllPossibleValues(){
+        possibleValues = new ArrayList();
+    }
+
     public void setValue(int value){
         this.value = value;
     }

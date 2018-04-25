@@ -27,7 +27,7 @@ public class SoleCandidateSolver implements Solver {
                     populateCandidates(candidates);
                     bs = board.getBoardSections(x,y);
                     removeValues(bs,candidates);
-                    if(candidates.size() == 1){
+                    if(candidates.size() == 1 && board.getValue(x,y) == 0){
                         board.setValue(x,y,(Integer.parseInt(candidates.get(0).toString())));
                     }
                 }

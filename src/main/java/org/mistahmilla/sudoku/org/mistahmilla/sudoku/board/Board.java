@@ -179,4 +179,21 @@ public class Board {
         }
         return bs;
     }
+
+    public void generatePossibleValues(){
+
+        for (int x= 0; x<9; x++){
+            for (int y = 0; y<9; y++){
+                getSquare(x, y).removeAllPossibleValues();
+                if(!hasValue(x, y)){
+                    for(int i = 1; i<=9; i++) {
+                        if(validValue(x, y, i)){
+                            getSquare(x, y).addPossibleValue(i);
+                        }
+                    }
+                }
+            }
+        }
+
+    }
 }

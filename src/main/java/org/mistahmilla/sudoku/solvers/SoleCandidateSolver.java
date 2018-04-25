@@ -6,10 +6,10 @@ import java.util.ArrayList;
 
 public class SoleCandidateSolver implements Solver {
 
-    private Board _board;
+    private Board board;
 
     public SoleCandidateSolver(Board board){
-        _board = board;
+        this.board = board;
     }
 
     public void Solve(){
@@ -25,10 +25,10 @@ public class SoleCandidateSolver implements Solver {
                 for(int y=0; y<9; y++) {
                     candidates = new ArrayList();
                     populateCandidates(candidates);
-                    bs = _board.getBoardSections(x,y);
+                    bs = board.getBoardSections(x,y);
                     removeValues(bs,candidates);
                     if(candidates.size() == 1){
-                        _board.setValue(x,y,(Integer.parseInt(candidates.get(0).toString())));
+                        board.setValue(x,y,(Integer.parseInt(candidates.get(0).toString())));
                     }
                 }
             }
@@ -49,9 +49,9 @@ public class SoleCandidateSolver implements Solver {
         for (int i = 0; i<sections.length; i++){
             for(int x = sections[i].getMinX(); x<=sections[i].getMaxX(); x++){
                 for (int y = sections[i].getMinY(); y<=sections[i].getMaxY(); y++){
-                    if (_board.getValue(x,y) != 0){
-                        if(candidates.contains(_board.getValue(x, y))){
-                            candidates.remove(new Integer(_board.getValue(x,y)));
+                    if (board.getValue(x,y) != 0){
+                        if(candidates.contains(board.getValue(x, y))){
+                            candidates.remove(new Integer(board.getValue(x,y)));
                         }
                     }
                 }

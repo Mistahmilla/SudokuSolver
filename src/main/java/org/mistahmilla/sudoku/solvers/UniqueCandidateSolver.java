@@ -4,10 +4,10 @@ import org.mistahmilla.sudoku.org.mistahmilla.sudoku.board.BoardSection;
 
 public class UniqueCandidateSolver implements Solver{
 
-    private Board _board;
+    private Board board;
 
     public UniqueCandidateSolver(Board board){
-        _board = board;
+        this.board = board;
     }
 
     public void Solve(){
@@ -18,7 +18,7 @@ public class UniqueCandidateSolver implements Solver{
         BoardSection[] boardSections;
         BoardSection bs;
 
-        boardSections = _board.getBoardSections();
+        boardSections = board.getBoardSections();
         do {
             validX = 0;
             validY = 0;
@@ -30,10 +30,10 @@ public class UniqueCandidateSolver implements Solver{
                     bs = boardSections[a];
                     for (int x = bs.getMinX(); x <= bs.getMaxX(); x++) {
                         for (int y = bs.getMinY(); y <= bs.getMaxY(); y++) {
-                            if(i == 7 && x == 4 && y ==0 && _board.validValue(x, y, i)){
-                                System.out.println(_board);
+                            if(i == 7 && x == 4 && y ==0 && board.validValue(x, y, i)){
+                                System.out.println(board);
                             }
-                            if (_board.validValue(x, y, i)) {
+                            if (board.validValue(x, y, i)) {
                                 trueCount++;
                                 validX = x;
                                 validY = y;
@@ -41,7 +41,7 @@ public class UniqueCandidateSolver implements Solver{
                         }
                     }
                     if (trueCount == 1) {
-                        _board.setValue(validX, validY, i);
+                        board.setValue(validX, validY, i);
                         changesMade++;
                     }
                     trueCount = 0;

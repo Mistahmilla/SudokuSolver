@@ -158,7 +158,8 @@ public class Board {
         int pos;
         pos = 0;
         for(int i = 0; i< boardSections.length; i++){
-            if (x >= boardSections[i].getMinX() && x<= boardSections[i].getMaxX() && y >= boardSections[i].getMinY() && y<= boardSections[i].getMaxY()){
+            if (x >= boardSections[i].getMinX() && x<= boardSections[i].getMaxX()
+                    && y >= boardSections[i].getMinY() && y<= boardSections[i].getMaxY()){
                 bs[pos] = boardSections[i];
                 pos++;
             }

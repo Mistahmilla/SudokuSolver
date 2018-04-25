@@ -2,31 +2,37 @@ package org.mistahmilla.sudoku.org.mistahmilla.sudoku.board;
 
 public class BoardSection {
 
-    private int _minX;
-    private int _maxX;
-    private int _minY;
-    private int _maxY;
+    private int minX;
+    private int maxX;
+    private int minY;
+    private int maxY;
+    private BoardSectionType sectionType;
 
-    public BoardSection(int minX, int maxX, int minY, int maxY){
-        _minX = minX;
-        _maxX = maxX;
-        _minY = minY;
-        _maxY = maxY;
+    public BoardSection(int minX, int maxX, int minY, int maxY, BoardSectionType sectionType){
+        this.minX = minX;
+        this.maxX = maxX;
+        this.minY = minY;
+        this.maxY = maxY;
+        this.sectionType = sectionType;
     }
 
     public int getMinX(){
-        return _minX;
+        return minX;
     }
 
     public int getMaxX(){
-        return _maxX;
+        return maxX;
     }
 
     public int getMinY(){
-        return _minY;
+        return minY;
     }
 
     public int getMaxY(){
-        return _maxY;
+        return maxY;
+    }
+
+    public BoardSectionType getBoardSectionType(){
+        return sectionType;
     }
 }

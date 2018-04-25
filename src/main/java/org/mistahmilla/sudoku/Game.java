@@ -5,33 +5,33 @@ import org.mistahmilla.sudoku.solvers.*;
 
 public class Game {
 
-    private Board _board;
+    private Board board;
 
     public Game(String values){
-        _board = new Board(values);
+        board = new Board(values);
     }
 
     public void run(){
         int pre;
         int post;
 
-        UniqueCandidateSolver us = new UniqueCandidateSolver(_board);
-        SoleCandidateSolver sc = new SoleCandidateSolver(_board);
-        BestGuessSolver bgs = new BestGuessSolver(_board);
+        UniqueCandidateSolver us = new UniqueCandidateSolver(board);
+        SoleCandidateSolver sc = new SoleCandidateSolver(board);
+        BestGuessSolver bgs = new BestGuessSolver(board);
 
         do{
-            pre = _board.missingCount();
+            pre = board.missingCount();
 
             us.Solve();
             sc.Solve();
 
-            post = _board.missingCount();
+            post = board.missingCount();
         }while(post<pre);
         bgs.Solve();
     }
 
     public Board getBoard(){
-        return _board;
+        return board;
     }
 
 }

@@ -3,10 +3,10 @@ import org.mistahmilla.sudoku.org.mistahmilla.sudoku.board.Board;
 
 public class NotesSolver implements Solver{
 
-    private Board _board;
+    private Board board;
 
     public NotesSolver(Board board){
-        _board = board;
+        this.board = board;
     }
 
     public void Solve(){
@@ -22,8 +22,8 @@ public class NotesSolver implements Solver{
             changed = 0;
             for (int x = 0; x < 9; x++) {
                 for (int y = 0; y < 9; y++) {
-                    if (_board.getSquare(x, y).getPossibleValues().size() == 1) {
-                        _board.setValue(x, y, Integer.parseInt(_board.getSquare(x, y).getPossibleValues().get(0).toString()));
+                    if (board.getSquare(x, y).getPossibleValues().size() == 1) {
+                        board.setValue(x, y, Integer.parseInt(board.getSquare(x, y).getPossibleValues().get(0).toString()));
                         changed++;
                     }
                 }
@@ -34,10 +34,10 @@ public class NotesSolver implements Solver{
     void generatePossibleValues(){
         for (int x= 0; x<9; x++){
             for (int y = 0; y<9; y++){
-                if(!_board.hasValue(x, y)){
+                if(!board.hasValue(x, y)){
                     for(int i = 1; i<=9; i++) {
-                        if(_board.validValue(x, y, i)){
-                            _board.getSquare(x, y).addPossibleValue(i);
+                        if(board.validValue(x, y, i)){
+                            board.getSquare(x, y).addPossibleValue(i);
                         }
                     }
                 }

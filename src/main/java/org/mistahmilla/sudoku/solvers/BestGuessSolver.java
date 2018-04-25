@@ -4,10 +4,10 @@ import org.mistahmilla.sudoku.org.mistahmilla.sudoku.board.Board;
 
 public class BestGuessSolver implements Solver {
 
-    private Board _board;
+    private Board board;
 
     public BestGuessSolver(Board board){
-        _board = board;
+        this.board = board;
     }
 
     public void Solve(){
@@ -25,18 +25,18 @@ public class BestGuessSolver implements Solver {
 
         for (int x = 0; x <9; x++){
             for (int y = 0; y<9; y++){
-                if(_board.getSquare(x, y).getPossibleValues().size() < fewest && _board.getSquare(x, y).getPossibleValues().size() != 0){
+                if(board.getSquare(x, y).getPossibleValues().size() < fewest && board.getSquare(x, y).getPossibleValues().size() != 0){
                     bestX = x;
                     bestY = y;
-                    fewest = _board.getSquare(x, y).getPossibleValues().size();
+                    fewest = board.getSquare(x, y).getPossibleValues().size();
                 }
             }
         }
 
         // create new games seeded off the possible numbers and try to solve them
-        for (int i = 0; i < _board.getSquare(bestX, bestY).getPossibleValues().size() && !done; i++){
-            g = new Game(_board.toCSV());
-            g.getBoard().setValue(bestX, bestY, Integer.parseInt(_board.getSquare(bestX, bestY).getPossibleValues().get(i).toString()));
+        for (int i = 0; i < board.getSquare(bestX, bestY).getPossibleValues().size() && !done; i++){
+            g = new Game(board.toCSV());
+            g.getBoard().setValue(bestX, bestY, Integer.parseInt(board.getSquare(bestX, bestY).getPossibleValues().get(i).toString()));
             g.run();
 
             if(g.getBoard().missingCount() ==0){
@@ -44,8 +44,8 @@ public class BestGuessSolver implements Solver {
                 done = true;
                 for (int x = 0; x <9; x++){
                     for (int y = 0; y<9; y++){
-                        if(_board.getValue(x,y) == 0){
-                            _board.setValue(x,y,g.getBoard().getValue(x,y));
+                        if(board.getValue(x,y) == 0){
+                            board.setValue(x,y,g.getBoard().getValue(x,y));
                         }
                     }
                 }
@@ -56,10 +56,10 @@ public class BestGuessSolver implements Solver {
     void generatePossibleValues(){
         for (int x= 0; x<9; x++){
             for (int y = 0; y<9; y++){
-                if(!_board.hasValue(x, y)){
+                if(!board.hasValue(x, y)){
                     for(int i = 1; i<=9; i++) {
-                        if(_board.validValue(x, y, i)){
-                            _board.getSquare(x, y).addPossibleValue(i);
+                        if(board.validValue(x, y, i)){
+                            board.getSquare(x, y).addPossibleValue(i);
                         }
                     }
                 }

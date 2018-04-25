@@ -10,7 +10,7 @@ public class UniqueCandidateSolver implements Solver{
         this.board = board;
     }
 
-    public void Solve(){
+    public void solve(){
         int trueCount;
         int validX;
         int validY;

@@ -12,7 +12,7 @@ public class SoleCandidateSolver implements Solver {
         this.board = board;
     }
 
-    public void Solve(){
+    public void solve(){
 
         int changesMade;
         ArrayList candidates;

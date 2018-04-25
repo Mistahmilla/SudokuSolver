@@ -10,7 +10,7 @@ public class BestGuessSolver implements Solver {
         this.board = board;
     }
 
-    public void Solve(){
+    public void solve(){
         int bestX;
         int bestY;
         int fewest;

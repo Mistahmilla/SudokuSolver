@@ -11,7 +11,7 @@ public class SoleCandidateSolverTest {
         String input = "0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,8,0,0,0,0,2,0,9,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0";
         Board b = new Board(input);
         SoleCandidateSolver bs = new SoleCandidateSolver(b);
-        bs.Solve();
+        bs.solve();
         assertEquals(5, b.getValue(5,5));
     }
 

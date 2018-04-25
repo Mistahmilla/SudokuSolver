@@ -36,6 +36,11 @@ public class Board {
         String[] vals;
         int i;
         vals = values.split(",");
+
+        if(vals.length != 81){
+            throw new IllegalArgumentException("Board must contain exactly 81 spaces");
+        }
+
         i = 0;
         for (int y = 0; y < 9; y++){
             for (int x = 0; x<9; x++){

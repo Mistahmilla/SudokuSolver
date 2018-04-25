@@ -22,15 +22,15 @@ public class Game {
         do{
             pre = board.missingCount();
 
-            us.Solve();
-            sc.Solve();
+            us.solve();
+            sc.solve();
 
             post = board.missingCount();
         }while(post<pre);
 
         board.generatePossibleValues();
 
-        bgs.Solve();
+        bgs.solve();
 
     }
 

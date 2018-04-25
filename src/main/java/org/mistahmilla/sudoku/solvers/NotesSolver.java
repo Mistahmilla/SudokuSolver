@@ -9,7 +9,7 @@ public class NotesSolver implements Solver{
         this.board = board;
     }
 
-    public void Solve(){
+    public void solve(){
         generatePossibleValues();
         // TODO: 4/23/2018 add functionality for notes solver
         checkBoard();

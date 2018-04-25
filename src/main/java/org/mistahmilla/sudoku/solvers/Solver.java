@@ -2,6 +2,6 @@ package org.mistahmilla.sudoku.solvers;
 
 public interface Solver {
 
-    void Solve();
+    void solve();
 
 }

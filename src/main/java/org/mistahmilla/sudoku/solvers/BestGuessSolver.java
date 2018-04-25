@@ -26,7 +26,7 @@ public class BestGuessSolver implements Solver {
 
         for (int x = 0; x <9; x++){
             for (int y = 0; y<9; y++){
-                if(board.getSquare(x, y).getPossibleValues().size() < fewest && board.getSquare(x, y).getPossibleValues().size() != 0){
+                if(board.getSquare(x, y).getPossibleValues().size() < fewest && !board.getSquare(x, y).getPossibleValues().isEmpty()){
                     bestX = x;
                     bestY = y;
                     fewest = board.getSquare(x, y).getPossibleValues().size();

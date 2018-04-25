@@ -1,6 +1,7 @@
 package org.mistahmilla.sudoku.org.mistahmilla.sudoku.board;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class BoardSquare {
 
@@ -25,7 +26,7 @@ public class BoardSquare {
 
     public void removePossibleValue(int value){
         if(possibleValues.contains(value)){
-            possibleValues.remove(new Integer(value));
+            possibleValues.remove(Integer.valueOf(value));
         }
     }
 
@@ -41,7 +42,7 @@ public class BoardSquare {
         return value;
     }
 
-    public ArrayList getPossibleValues(){
+    public List getPossibleValues(){
         return possibleValues;
     }
 }

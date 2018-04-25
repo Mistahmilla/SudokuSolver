@@ -29,6 +29,7 @@ public class SoleCandidateSolver implements Solver {
                     removeValues(bs,candidates);
                     if(candidates.size() == 1 && board.getValue(x,y) == 0){
                         board.setValue(x,y,(Integer.parseInt(candidates.get(0).toString())));
+                        changesMade++;
                     }
                 }
             }
@@ -49,10 +50,8 @@ public class SoleCandidateSolver implements Solver {
         for (int i = 0; i<sections.length; i++){
             for(int x = sections[i].getMinX(); x<=sections[i].getMaxX(); x++){
                 for (int y = sections[i].getMinY(); y<=sections[i].getMaxY(); y++){
-                    if (board.getValue(x,y) != 0){
-                        if(candidates.contains(board.getValue(x, y))){
-                            candidates.remove(new Integer(board.getValue(x,y)));
-                        }
+                    if (board.getValue(x,y) != 0 && candidates.contains(board.getValue(x, y))){
+                        candidates.remove(Integer.valueOf(board.getValue(x,y)));
                     }
                 }
             }

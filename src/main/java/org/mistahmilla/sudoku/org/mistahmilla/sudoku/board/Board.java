@@ -2,33 +2,33 @@ package org.mistahmilla.sudoku.org.mistahmilla.sudoku.board;
 
 public class Board {
 
-    BoardSquare[][] _board;
-    BoardSection[] _boardSections;
+    BoardSquare[][] boardSquares;
+    BoardSection[] boardSections;
 
     public Board(){
-        _board = new BoardSquare[9][9];
+        boardSquares = new BoardSquare[9][9];
 
         for (int y = 0; y<9; y++){
             for (int x = 0; x<9; x++){
-                _board[x][y] = new BoardSquare(0);
+                boardSquares[x][y] = new BoardSquare(0);
             }
         }
 
-        _boardSections = new BoardSection[27];
+        boardSections = new BoardSection[27];
 
         for(int i = 0; i < 9; i++){
-            _boardSections[i] = new BoardSection(0,8, i, i);
-            _boardSections[i+9] = new BoardSection(i,i, 0, 8);
+            boardSections[i] = new BoardSection(0,8, i, i, BoardSectionType.ROW);
+            boardSections[i+9] = new BoardSection(i,i, 0, 8, BoardSectionType.COLUMN);
         }
-        _boardSections[18] = new BoardSection(0, 2, 0, 2);
-        _boardSections[19] = new BoardSection(3, 5, 0, 2);
-        _boardSections[20] = new BoardSection(6, 8, 0, 2);
-        _boardSections[21] = new BoardSection(0, 2, 3, 5);
-        _boardSections[22] = new BoardSection(3, 5, 3, 5);
-        _boardSections[23] = new BoardSection(6, 8, 3, 5);
-        _boardSections[24] = new BoardSection(0, 2, 6, 8);
-        _boardSections[25] = new BoardSection(3, 5, 6, 8);
-        _boardSections[26] = new BoardSection(6, 8, 6, 8);
+        boardSections[18] = new BoardSection(0, 2, 0, 2, BoardSectionType.SQUARE);
+        boardSections[19] = new BoardSection(3, 5, 0, 2, BoardSectionType.SQUARE);
+        boardSections[20] = new BoardSection(6, 8, 0, 2, BoardSectionType.SQUARE);
+        boardSections[21] = new BoardSection(0, 2, 3, 5, BoardSectionType.SQUARE);
+        boardSections[22] = new BoardSection(3, 5, 3, 5, BoardSectionType.SQUARE);
+        boardSections[23] = new BoardSection(6, 8, 3, 5, BoardSectionType.SQUARE);
+        boardSections[24] = new BoardSection(0, 2, 6, 8, BoardSectionType.SQUARE);
+        boardSections[25] = new BoardSection(3, 5, 6, 8, BoardSectionType.SQUARE);
+        boardSections[26] = new BoardSection(6, 8, 6, 8, BoardSectionType.SQUARE);
     }
 
     public Board(String Values) {
@@ -48,7 +48,7 @@ public class Board {
     }
 
     public void setValue(int posX, int posY, int value){
-        _board[posX][posY].setValue(value);
+        boardSquares[posX][posY].setValue(value);
 
 /*        //after setting a value, update the possible values
         BoardSection[] b = getBoardSections(posX, posY);
@@ -62,7 +62,7 @@ public class Board {
     }
 
     public int getValue(int posX, int posY){
-        return _board[posX][posY].getValue();
+        return boardSquares[posX][posY].getValue();
     }
 
     public boolean hasValue(int posX, int posY){
@@ -73,7 +73,7 @@ public class Board {
     }
 
     public BoardSquare getSquare(int posX, int posY){
-        return _board[posX][posY];
+        return boardSquares[posX][posY];
     }
 
     // return false if the value can't go there, else true
@@ -150,16 +150,16 @@ public class Board {
     }
 
     public BoardSection[] getBoardSections(){
-        return _boardSections;
+        return boardSections;
     }
 
     public BoardSection[] getBoardSections(int x, int y){
         BoardSection[] bs = new BoardSection[3];
         int pos;
         pos = 0;
-        for(int i = 0; i<_boardSections.length; i++){
-            if (x >=_boardSections[i].getMinX() && x<=_boardSections[i].getMaxX() && y >=_boardSections[i].getMinY() && y<=_boardSections[i].getMaxY()){
-                bs[pos] = _boardSections[i];
+        for(int i = 0; i< boardSections.length; i++){
+            if (x >= boardSections[i].getMinX() && x<= boardSections[i].getMaxX() && y >= boardSections[i].getMinY() && y<= boardSections[i].getMaxY()){
+                bs[pos] = boardSections[i];
                 pos++;
             }
         }
@@ -170,9 +170,9 @@ public class Board {
         BoardSection[] bs = new BoardSection[9];
         int pos;
         pos = 0;
-        for(int i = 0; i<_boardSections.length; i++){
-            if(_boardSections[i].getMaxY()-_boardSections[i].getMinY() == type.getHeight()){
-                bs[pos] = _boardSections[i];
+        for(int i = 0; i< boardSections.length; i++){
+            if(boardSections[i].getMaxY()- boardSections[i].getMinY() == type.getHeight()){
+                bs[pos] = boardSections[i];
                 pos++;
             }
         }

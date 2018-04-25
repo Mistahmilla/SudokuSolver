@@ -31,11 +31,11 @@ public class Board {
         boardSections[26] = new BoardSection(6, 8, 6, 8, BoardSectionType.SQUARE);
     }
 
-    public Board(String Values) {
+    public Board(String values) {
         this();
         String[] vals;
         int i;
-        vals = Values.split(",");
+        vals = values.split(",");
         i = 0;
         for (int y = 0; y < 9; y++){
             for (int x = 0; x<9; x++){
@@ -49,16 +49,6 @@ public class Board {
 
     public void setValue(int posX, int posY, int value){
         boardSquares[posX][posY].setValue(value);
-
-/*        //after setting a value, update the possible values
-        BoardSection[] b = getBoardSections(posX, posY);
-        for(int i = 0; i < b.length; i++){
-            for (int x = b[i].getMinX(); x <= b[i].getMaxX(); x++){
-                for (int y = b[i].getMinY(); y <= b[i].getMaxY(); y++){
-                    getSquare[x][y].removePossibleValue(value);
-                }
-            }
-        }*/
     }
 
     public int getValue(int posX, int posY){
@@ -66,10 +56,7 @@ public class Board {
     }
 
     public boolean hasValue(int posX, int posY){
-        if(getValue(posX, posY)!= 0){
-            return true;
-        }
-        return false;
+        return getValue(posX, posY)!= 0;
     }
 
     public BoardSquare getSquare(int posX, int posY){
@@ -93,47 +80,40 @@ public class Board {
                 }
             }
         }
-
-        //check column
-        //for (int i = 0; i < 9; i++){
-        //    if (getValue(i, y) == val && i != y){
-        //        return false;
-        //    }
-        //}
         return true;
     }
 
     public String toString(){
-        String s;
-        s = "";
+        StringBuilder sb = new StringBuilder();
+
         for (int y = 0; y<9; y++){
             if (y%3==0){
-                s += "-------------\n";
+                sb.append( "-------------\n");
             }
             for (int x = 0; x<9; x++){
                 if(x%3==0){
-                    s += "|";
+                    sb.append("|");
                 }
-                s += getValue(x, y);
+                sb.append(getValue(x, y));
             }
-            s = s+"|\n";
+            sb.append("|\n");
         }
-        s += "-------------";
-        return s;
+        sb.append("-------------");
+        return sb.toString();
     }
 
     public String toCSV(){
-        String s;
-        s = "";
+        StringBuilder sb = new StringBuilder();
+
         for (int y = 0; y<9; y++){
             for (int x = 0; x<9; x++){
                 if (!(y==0 && x ==0)) {
-                    s = s + ",";
+                    sb.append(",");
                 }
-                s = s + getValue(x, y);
+                sb.append(getValue(x, y));
             }
         }
-        return s;
+        return sb.toString();
     }
 
     public int missingCount(){

@@ -42,15 +42,19 @@ public class BestGuessSolver implements Solver {
 
             g.run();
 
-            if(g.getBoard().missingCount() ==0){
+            if(g.getBoard().missingCount() == 0){
                 // found the winning board
                 done = true;
-                for (int x = 0; x <9; x++){
-                    for (int y = 0; y<9; y++){
-                        if(board.getValue(x,y) == 0){
-                            board.setValue(x,y,g.getBoard().getValue(x,y));
-                        }
-                    }
+                updateBoard(board, g.getBoard());
+            }
+        }
+    }
+
+    private void updateBoard(Board gameBoard, Board solvedBoard){
+        for (int x = 0; x <9; x++){
+            for (int y = 0; y<9; y++){
+                if(gameBoard.getValue(x,y) == 0){
+                    gameBoard.setValue(x,y,solvedBoard.getValue(x,y));
                 }
             }
         }

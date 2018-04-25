@@ -30,9 +30,6 @@ public class UniqueCandidateSolver implements Solver{
                     bs = boardSections[a];
                     for (int x = bs.getMinX(); x <= bs.getMaxX(); x++) {
                         for (int y = bs.getMinY(); y <= bs.getMaxY(); y++) {
-                            if(i == 7 && x == 4 && y ==0 && board.validValue(x, y, i)){
-                                System.out.println(board);
-                            }
                             if (board.validValue(x, y, i)) {
                                 trueCount++;
                                 validX = x;
@@ -51,4 +48,5 @@ public class UniqueCandidateSolver implements Solver{
 
 
     }
+
 }

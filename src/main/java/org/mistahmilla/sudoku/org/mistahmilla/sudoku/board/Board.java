@@ -50,6 +50,10 @@ public class Board {
                 i++;
             }
         }
+
+        if (!isValid()){
+            throw new IllegalArgumentException("Board is not valid");
+        }
     }
 
     public void setValue(int posX, int posY, int value){
@@ -180,5 +184,33 @@ public class Board {
             }
         }
 
+    }
+
+    public boolean isValid(){
+        //check that each section only has one of each number
+
+        int[] valueCount = new int[9];
+
+        for (int i = 0; i < boardSections.length; i++){
+            for (int v = 0; v<valueCount.length; v++){
+                valueCount[v] = 0;
+            }
+
+            for (int x = boardSections[i].getMinX(); x <= boardSections[i].getMaxX(); x++){
+                for (int y = boardSections[i].getMinY(); y <= boardSections[i].getMaxY(); y++){
+                    if(getValue(x, y) != 0){
+                        valueCount[getValue(x, y)-1]++;
+                    }
+                }
+            }
+
+            for (int v = 0; v<valueCount.length; v++){
+                if (valueCount[v] > 1){
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 }

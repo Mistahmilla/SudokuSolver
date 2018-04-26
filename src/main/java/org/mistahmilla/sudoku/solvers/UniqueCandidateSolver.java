@@ -1,6 +1,6 @@
 package org.mistahmilla.sudoku.solvers;
-import org.mistahmilla.sudoku.org.mistahmilla.sudoku.board.Board;
-import org.mistahmilla.sudoku.org.mistahmilla.sudoku.board.BoardSection;
+import org.mistahmilla.sudoku.board.Board;
+import org.mistahmilla.sudoku.board.BoardSection;
 
 public class UniqueCandidateSolver implements Solver{
 

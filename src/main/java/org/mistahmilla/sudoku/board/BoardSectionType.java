@@ -1,4 +1,4 @@
-package org.mistahmilla.sudoku.org.mistahmilla.sudoku.board;
+package org.mistahmilla.sudoku.board;
 
 public enum BoardSectionType {
     ROW(1), COLUMN(9), SQUARE(3);

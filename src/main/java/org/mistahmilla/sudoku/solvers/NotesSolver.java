@@ -10,8 +10,9 @@ public class NotesSolver implements Solver{
     }
 
     public void solve(){
+        NakedSubset ns = new NakedSubset(board);
         generatePossibleValues();
-        // TODO: 4/23/2018 add functionality for notes solver
+        ns.eliminate();
         checkBoard();
     }
 
@@ -45,6 +46,5 @@ public class NotesSolver implements Solver{
         }
 
     }
-
 
 }

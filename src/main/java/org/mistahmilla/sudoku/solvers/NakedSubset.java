@@ -45,8 +45,41 @@ public class NakedSubset implements NoteEliminator {
                                 }
                             }
                         }
+
+                        for (int c = 1; c<=9; c++){
+                            if(a!=c && b!=c){
+                                squares = new char[9][9];
+                                section = bs[i];
+                                count = 0;
+                                for (int x = section.getMinX(); x <= section.getMaxX(); x++) {
+                                    for (int y = section.getMinY(); y <= section.getMaxY(); y++) {
+                                        if (board.getSquare(x, y).getPossibleValues().contains(Integer.valueOf(a))
+                                                && board.getSquare(x, y).getPossibleValues().contains(Integer.valueOf(b))
+                                                && board.getSquare(x, y).getPossibleValues().contains(Integer.valueOf(c))
+                                                && board.getSquare(x, y).getPossibleValues().size() == 3) {
+                                            squares[x][y] = 'x';
+                                            count++;
+                                        }
+                                    }
+                                }
+                                if (count >= 3) {
+                                    for (int x = section.getMinX(); x <= section.getMaxX(); x++) {
+                                        for (int y = section.getMinY(); y <= section.getMaxY(); y++) {
+                                            if (squares[x][y] != 'x') {
+                                                board.getSquare(x, y).removePossibleValue(a);
+                                                board.getSquare(x, y).removePossibleValue(b);
+                                                board.getSquare(x, y).removePossibleValue(c);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
+
                 }
+
+
             }
         }
     }

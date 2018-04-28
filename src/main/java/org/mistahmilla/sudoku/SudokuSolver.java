@@ -6,7 +6,13 @@ public class SudokuSolver {
         Game g;
 
         if (args.length == 1){
-            g = new Game(args[0]);
+
+            try {
+                g = new Game(args[0]);
+            }catch(IllegalArgumentException e){
+                System.out.println(e.getMessage());
+                return;
+            }
             g.run();
 
             while(g.getBoard().missingCount() != 0){

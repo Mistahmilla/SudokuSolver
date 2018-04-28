@@ -23,7 +23,7 @@ public class NotesSolver implements Solver{
             changed = 0;
             for (int x = 0; x < 9; x++) {
                 for (int y = 0; y < 9; y++) {
-                    if (board.getSquare(x, y).getPossibleValues().size() == 1) {
+                    if (board.getSquare(x, y).getPossibleValues().size() == 1 && board.getValue(x,y) == 0) {
                         board.setValue(x, y, Integer.parseInt(board.getSquare(x, y).getPossibleValues().get(0).toString()));
                         changed++;
                     }

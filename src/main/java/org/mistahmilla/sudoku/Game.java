@@ -18,12 +18,13 @@ public class Game {
         UniqueCandidateSolver us = new UniqueCandidateSolver(board);
         SoleCandidateSolver sc = new SoleCandidateSolver(board);
         BestGuessSolver bgs = new BestGuessSolver(board);
-
+        NotesSolver ns = new NotesSolver(board);
         do{
             pre = board.missingCount();
 
             us.solve();
             sc.solve();
+            ns.solve();
 
             post = board.missingCount();
         }while(post<pre);

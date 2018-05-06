@@ -41,7 +41,7 @@ public class NakedSubsetTest {
         ArrayList candidates = new ArrayList();
         candidates.add(2);
         assertTrue(b.getSquare(0, 1).getPossibleValues().contains(Integer.valueOf(2)));
-        ns.removeCandidates(squares, candidates);
+        ns.removeCandidates(squares, candidates, b.getBoardSections()[9]);
         assertTrue(!b.getSquare(0, 1).getPossibleValues().contains(Integer.valueOf(2)));
 
     }

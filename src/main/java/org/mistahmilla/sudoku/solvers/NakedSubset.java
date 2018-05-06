@@ -16,7 +16,6 @@ public class NakedSubset implements NoteEliminator {
         char[][] squares;
         BoardSection[] bs = board.getBoardSections();
         BoardSection section;
-        int count;
         ArrayList candidateList;
 
         //go through each square and identify squares that have the same
@@ -29,18 +28,8 @@ public class NakedSubset implements NoteEliminator {
                     for (int i = 0; i < bs.length; i++) {
                         squares = new char[9][9];
                         section = bs[i];
-                        count = 0;
-                        for (int x = section.getMinX(); x <= section.getMaxX(); x++) {
-                            for (int y = section.getMinY(); y <= section.getMaxY(); y++) {
-                                if (board.getSquare(x, y).getPossibleValues().contains(Integer.valueOf(a))
-                                        && board.getSquare(x, y).getPossibleValues().contains(Integer.valueOf(b))
-                                        && board.getSquare(x, y).getPossibleValues().size() == 2) {
-                                    squares[x][y] = 'x';
-                                    count++;
-                                }
-                            }
-                        }
-                        if (count >= 2) {
+
+                        if (checkCandidates(squares, candidateList, section) >= 2) {
                             removeCandidates(squares, candidateList,section);
                         }
 
@@ -49,19 +38,7 @@ public class NakedSubset implements NoteEliminator {
                                 candidateList.add(c);
                                 squares = new char[9][9];
                                 section = bs[i];
-                                count = 0;
-                                for (int x = section.getMinX(); x <= section.getMaxX(); x++) {
-                                    for (int y = section.getMinY(); y <= section.getMaxY(); y++) {
-                                        if (board.getSquare(x, y).getPossibleValues().contains(Integer.valueOf(a))
-                                                && board.getSquare(x, y).getPossibleValues().contains(Integer.valueOf(b))
-                                                && board.getSquare(x, y).getPossibleValues().contains(Integer.valueOf(c))
-                                                && board.getSquare(x, y).getPossibleValues().size() == 3) {
-                                            squares[x][y] = 'x';
-                                            count++;
-                                        }
-                                    }
-                                }
-                                if (count >= 3) {
+                                if (checkCandidates(squares, candidateList, section) >= 3) {
                                     removeCandidates(squares, candidateList,section);
                                 }
                                 candidateList.remove(Integer.valueOf(c));
@@ -75,6 +52,26 @@ public class NakedSubset implements NoteEliminator {
 
             }
         }
+    }
+
+    int checkCandidates(char[][] squares, ArrayList candidates, BoardSection s){
+        int count = 0;
+        boolean b;
+        for (int x = s.getMinX(); x <= s.getMaxX(); x++) {
+            for (int y = s.getMinY(); y <= s.getMaxY(); y++) {
+                b = true;
+                for (int i = 0; i < candidates.size(); i ++){
+                    if(!board.getSquare(x, y).getPossibleValues().contains(candidates.get(i))){
+                        b = false;
+                    }
+                }
+                if (b && board.getSquare(x, y).getPossibleValues().size() == candidates.size()) {
+                    squares[x][y] = 'x';
+                    count++;
+                }
+            }
+        }
+        return count;
     }
 
     void removeCandidates(char[][] squares, ArrayList candidates, BoardSection s){

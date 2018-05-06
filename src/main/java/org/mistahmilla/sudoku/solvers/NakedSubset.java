@@ -24,32 +24,32 @@ public class NakedSubset implements NoteEliminator {
                 candidateList = new ArrayList();
                 candidateList.add(a);
                 candidateList.add(b);
-                if (a!=b) {
-                    for (int i = 0; i < bs.length; i++) {
-                        squares = new char[9][9];
-                        section = bs[i];
-
-                        if (checkCandidates(squares, candidateList, section) >= 2) {
-                            removeCandidates(squares, candidateList,section);
-                        }
-
-                        for (int c = 1; c<=9; c++){
-                            if(a!=c && b!=c){
-                                candidateList.add(c);
-                                squares = new char[9][9];
-                                section = bs[i];
-                                if (checkCandidates(squares, candidateList, section) >= 3) {
-                                    removeCandidates(squares, candidateList,section);
-                                }
-                                candidateList.remove(Integer.valueOf(c));
-                            }
-
-                        }
-                    }
-
+                if (a==b) {
+                    continue;
                 }
 
+                for (int i = 0; i < bs.length; i++) {
+                    squares = new char[9][9];
+                    section = bs[i];
 
+                    if (checkCandidates(squares, candidateList, section) >= 2) {
+                        removeCandidates(squares, candidateList,section);
+                    }
+
+                    for (int c = 1; c<=9; c++){
+                        if(a==c || b==c) {
+                            continue;
+                        }
+
+                        candidateList.add(c);
+                        squares = new char[9][9];
+                        section = bs[i];
+                        if (checkCandidates(squares, candidateList, section) >= 3) {
+                            removeCandidates(squares, candidateList,section);
+                        }
+                        candidateList.remove(Integer.valueOf(c));
+                    }
+                }
             }
         }
     }

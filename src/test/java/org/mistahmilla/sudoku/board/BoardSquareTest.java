@@ -1,3 +1,5 @@
+package org.mistahmilla.sudoku.board;
+
 import org.junit.*;
 import org.mistahmilla.sudoku.board.BoardSquare;
 

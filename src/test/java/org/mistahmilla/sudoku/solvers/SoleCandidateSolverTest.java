@@ -1,3 +1,5 @@
+package org.mistahmilla.sudoku.solvers;
+
 import org.junit.*;
 import org.mistahmilla.sudoku.board.Board;
 import org.mistahmilla.sudoku.solvers.SoleCandidateSolver;

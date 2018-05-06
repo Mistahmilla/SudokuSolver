@@ -2,6 +2,8 @@ package org.mistahmilla.sudoku.solvers;
 
 import org.mistahmilla.sudoku.board.*;
 
+import java.util.ArrayList;
+
 public class NakedSubset implements NoteEliminator {
 
     Board board;
@@ -15,11 +17,14 @@ public class NakedSubset implements NoteEliminator {
         BoardSection[] bs = board.getBoardSections();
         BoardSection section;
         int count;
+        ArrayList candidateList;
 
         //go through each square and identify squares that have the same
         for (int a = 1; a <=9; a++){
             for(int b = 1; b<=9; b++){
-
+                candidateList = new ArrayList();
+                candidateList.add(a);
+                candidateList.add(b);
                 if (a!=b) {
                     for (int i = 0; i < bs.length; i++) {
                         squares = new char[9][9];
@@ -36,18 +41,12 @@ public class NakedSubset implements NoteEliminator {
                             }
                         }
                         if (count >= 2) {
-                            for (int x = section.getMinX(); x <= section.getMaxX(); x++) {
-                                for (int y = section.getMinY(); y <= section.getMaxY(); y++) {
-                                    if (squares[x][y] != 'x') {
-                                        board.getSquare(x, y).removePossibleValue(a);
-                                        board.getSquare(x, y).removePossibleValue(b);
-                                    }
-                                }
-                            }
+                            removeCandidates(squares, candidateList);
                         }
 
                         for (int c = 1; c<=9; c++){
                             if(a!=c && b!=c){
+                                candidateList.add(c);
                                 squares = new char[9][9];
                                 section = bs[i];
                                 count = 0;
@@ -63,23 +62,29 @@ public class NakedSubset implements NoteEliminator {
                                     }
                                 }
                                 if (count >= 3) {
-                                    for (int x = section.getMinX(); x <= section.getMaxX(); x++) {
-                                        for (int y = section.getMinY(); y <= section.getMaxY(); y++) {
-                                            if (squares[x][y] != 'x') {
-                                                board.getSquare(x, y).removePossibleValue(a);
-                                                board.getSquare(x, y).removePossibleValue(b);
-                                                board.getSquare(x, y).removePossibleValue(c);
-                                            }
-                                        }
-                                    }
+                                    removeCandidates(squares, candidateList);
                                 }
+                                candidateList.remove(Integer.valueOf(c));
                             }
+
                         }
                     }
 
                 }
 
 
+            }
+        }
+    }
+
+    void removeCandidates(char[][] squares, ArrayList candidates){
+        for (int x = 0; x<squares.length; x++){
+            for (int y = 0; y<squares.length; y++){
+                if (squares[x][y] != 'x'){
+                    for (int i = 0; i < candidates.size(); i++) {
+                        board.getSquare(x, y).removePossibleValue(Integer.parseInt(candidates.get(i).toString()));
+                    }
+                }
             }
         }
     }
